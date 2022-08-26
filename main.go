@@ -1,17 +1,22 @@
 package main
 
 import (
+	"go-sample/app/config"
 	"go-sample/app/controllers"
 	"go-sample/app/db"
 	"go-sample/app/repositories"
 	"go-sample/app/router"
 	"go-sample/app/services"
+	utils "go-sample/app/utils/log"
 	"go-sample/app/utils/logic"
 	"go-sample/app/utils/validation"
+	"log"
 )
 
 func main() {
 	// DB接続
+	utils.LoggingSettings(config.Config.LogFile)
+	log.Println("test")
 	db := db.Init()
 
 	// logic層
@@ -52,4 +57,5 @@ func main() {
 
 	// API起動
 	mainRouter.StartWebServer()
+
 }
